@@ -21,8 +21,6 @@ public class PlayerScript : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		cache_input.move.x = Input.GetAxis("Horizontal");
-		cache_input.move.y = Input.GetAxis("Vertical");
 		cachen_anim.SetFloat("Ver", cache_input.move.y);
 		cachen_anim.SetFloat("Hor", cache_input.move.x);
 
