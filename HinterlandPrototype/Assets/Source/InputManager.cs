@@ -4,44 +4,80 @@ using System.Collections;
 public class InputManager : MonoBehaviour
 {
 	public Vector2 move;
+	public Vector3 move3D;
 	public bool Touch;
 	private bool Up;
 	private bool Down;
 	private bool L;
 	private bool R;
+	private FPSPlayerScript player3D;
 
 	// Use this for initialization
 	void Start ()
 	{
-	
+		if (this.GetComponent<FPSPlayerScript>() != null)
+		{
+			player3D = this.GetComponent<FPSPlayerScript>();
+		}
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
-		move = Vector2.zero;
-		if(!Touch)
+		if (this.GetComponent<Rigidbody>() != null)
 		{
-			move.y = Input.GetAxis("Vertical");
-			move.x = Input.GetAxis("Horizontal");
+			move3D = Vector3.zero;
+			if (!Touch)
+			{
+				move3D.z = Input.GetAxis("Vertical");
+				move3D.x = Input.GetAxis("Horizontal");
+			}
+			else
+			{
+				if (Up)
+				{
+					move3D.z += 1;
+				}
+				if (Down)
+				{
+					move3D.z -= 1;
+				}
+				if (R)
+				{
+					move3D.x += 1;
+				}
+				if (L)
+				{
+					move3D.x -= 1;
+				}
+			}
 		}
 		else
 		{
-			if(Up)
+			move = Vector2.zero;
+			if (!Touch)
 			{
-				move.y += 1;
+				move.y = Input.GetAxis("Vertical");
+				move.x = Input.GetAxis("Horizontal");
 			}
-			if(Down)
+			else
 			{
-				move.y -= 1;
-			}
-			if(R)
-			{
-				move.x += 1;
-			}
-			if(L)
-			{
-				move.x -= 1;
+				if (Up)
+				{
+					move.y += 1;
+				}
+				if (Down)
+				{
+					move.y -= 1;
+				}
+				if (R)
+				{
+					move.x += 1;
+				}
+				if (L)
+				{
+					move.x -= 1;
+				}
 			}
 		}
 	}
@@ -84,5 +120,10 @@ public class InputManager : MonoBehaviour
 	public void LeftOff()
 	{
 		L = false;
+	}
+
+	public void InputRotate()
+	{
+		player3D.Rotate();
 	}
 }
