@@ -3,6 +3,7 @@ using System.Collections;
 
 public class InputManager : MonoBehaviour
 {
+	public RectTransform RotateRT;
 	public Vector2 move;
 	public Vector3 move3D;
 	public bool Touch;
@@ -15,6 +16,7 @@ public class InputManager : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
+
 		if (this.GetComponent<FPSPlayerScript>() != null)
 		{
 			player3D = this.GetComponent<FPSPlayerScript>();

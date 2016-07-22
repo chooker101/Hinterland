@@ -17,7 +17,7 @@ public class CameraScript : MonoBehaviour
 	private bool once = false;
 
 	// Use this for initialization
-	void Start ()
+	void Start()
 	{
 		cache_tf = this.GetComponent<Transform>();
 		cache_rb = this.GetComponent<Rigidbody2D>();
@@ -25,18 +25,19 @@ public class CameraScript : MonoBehaviour
 		inputcache = player.GetComponent<InputManager>();
 		cache_tf.LookAt(playertcache);
 	}
-	
+
 	// Update is called once per frame
-	void Update ()
+	void Update()
 	{
 		if (!EditMode)
 		{
 			cache_tf.position = place + playertcache.position;
+			cache_tf.LookAt(playertcache);
 			once = true;
 		}
 		else
 		{
-			if(once)
+			if (once)
 			{
 				Vector3 temp = cache_tf.position;
 				temp.z -= pullbackdist;

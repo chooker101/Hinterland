@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class FPSPlayerScript : MonoBehaviour
+public class FPSPlayerScript : Player
 {
 	public GameObject cam;
 	public float XSensitivity = 2f;
@@ -11,7 +11,6 @@ public class FPSPlayerScript : MonoBehaviour
 	public float smoothTime = 5f;
 	private Rigidbody cache_rb;
 	private Transform cache_tf;
-	private InputManager cache_input;
 	private Quaternion targetRot;
 
 	// Use this for initialization
@@ -33,17 +32,24 @@ public class FPSPlayerScript : MonoBehaviour
 
 	public void Rotate()
 	{
-		float yRot = Input.GetAxis("Mouse X") * XSensitivity;
+		float xAxis = Input.GetAxis("Mouse X");
+		float xPos = Input.mousePosition.x;
 
-		targetRot *= Quaternion.Euler(0f, yRot, 0f);
+		Debug.Log(cache_input.RotateRT.rect.xMin + " " + xPos);
+		if (cache_input.RotateRT.rect.xMin <= xPos)
+		{
+			float yRot = xAxis * XSensitivity;
 
-		if (smooth)
-		{
-			cache_tf.localRotation = Quaternion.Slerp(cache_tf.localRotation, targetRot, smoothTime * Time.deltaTime);
-		}
-		else
-		{
-			cache_tf.localRotation = targetRot;
+			targetRot *= Quaternion.Euler(0f, yRot, 0f);
+
+			if (smooth)
+			{
+				cache_tf.localRotation = Quaternion.Slerp(cache_tf.localRotation, targetRot, smoothTime * Time.deltaTime);
+			}
+			else
+			{
+				cache_tf.localRotation = targetRot;
+			}
 		}
 	}
 

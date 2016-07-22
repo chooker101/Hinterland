@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TopDownPlayerScript : MonoBehaviour
+public class TopDownPlayerScript : Player
 {
 	public float force;
 	public GameObject cam;
@@ -9,11 +9,11 @@ public class TopDownPlayerScript : MonoBehaviour
 	private Rigidbody2D cache_rb;
 	private Transform cache_tf;
 	private Animator cachen_anim;
-	private InputManager cache_input;
 
 	// Use this for initialization
 	void Start ()
 	{
+		//Debug.Log("Start");
 		cache_input = this.GetComponent<InputManager>();
 		cache_rb = this.GetComponent<Rigidbody2D>();
 		cache_tf = this.GetComponent<Transform>();
