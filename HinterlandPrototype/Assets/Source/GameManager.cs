@@ -16,7 +16,9 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-	[SerializeField]
-	private Player PlayersScript;
-
+	public GameObject gmPlayer;
+	public Player gmPlayersScript;
+	public GameObject gmPlayerCam;
+	public InputManager gmInputManager;
+	public RideScript gmRideScript;
 }

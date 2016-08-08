@@ -4,21 +4,19 @@ using System.Collections;
 public class TopDownPlayerScript : Player
 {
 	public float force;
-	public GameObject cam;
 	private CameraScript cs;
 	private Rigidbody2D cache_rb;
-	private Transform cache_tf;
 	private Animator cachen_anim;
 
 	// Use this for initialization
 	void Start ()
 	{
 		//Debug.Log("Start");
-		cache_input = this.GetComponent<InputManager>();
+		cache_input = GameManager.Instance.gmInputManager;
 		cache_rb = this.GetComponent<Rigidbody2D>();
 		cache_tf = this.GetComponent<Transform>();
 		cachen_anim = this.GetComponent<Animator>();
-		cs = cam.GetComponent<CameraScript>();
+		cs = GameManager.Instance.gmPlayerCam.GetComponent<CameraScript>();
 	}
 	
 	// Update is called once per frame

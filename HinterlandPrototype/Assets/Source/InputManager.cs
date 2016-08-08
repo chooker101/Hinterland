@@ -3,29 +3,25 @@ using System.Collections;
 
 public class InputManager : MonoBehaviour
 {
-	public RectTransform RotateRT;
+	//public RectTransform RotateRT;
 	public Vector2 move;
-	public Vector3 move3D;
+	//public Vector3 move3D;
 	public bool Touch;
 	private bool Up;
 	private bool Down;
 	private bool L;
 	private bool R;
-	private FPSPlayerScript player3D;
 
 	// Use this for initialization
 	void Start ()
 	{
-
-		if (this.GetComponent<FPSPlayerScript>() != null)
-		{
-			player3D = this.GetComponent<FPSPlayerScript>();
-		}
+		
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
+		/*
 		if (this.GetComponent<Rigidbody>() != null)
 		{
 			move3D = Vector3.zero;
@@ -55,7 +51,7 @@ public class InputManager : MonoBehaviour
 			}
 		}
 		else
-		{
+		{*/
 			move = Vector2.zero;
 			if (!Touch)
 			{
@@ -81,7 +77,7 @@ public class InputManager : MonoBehaviour
 					move.x -= 1;
 				}
 			}
-		}
+		//}
 	}
 
 	public void UpOn()
@@ -126,6 +122,6 @@ public class InputManager : MonoBehaviour
 
 	public void InputRotate()
 	{
-		player3D.Rotate();
+		GameManager.Instance.gmPlayersScript.Rotate();
 	}
 }

@@ -3,7 +3,7 @@ using System.Collections;
 
 public class CameraScript : MonoBehaviour
 {
-	public GameObject player;
+	//public GameObject player;
 	public bool EditMode;
 	public float camspeed;
 	[SerializeField]
@@ -13,7 +13,6 @@ public class CameraScript : MonoBehaviour
 	private Transform cache_tf;
 	private Rigidbody2D cache_rb;
 	private Transform playertcache;
-	private InputManager inputcache;
 	private bool once = false;
 
 	// Use this for initialization
@@ -21,8 +20,7 @@ public class CameraScript : MonoBehaviour
 	{
 		cache_tf = this.GetComponent<Transform>();
 		cache_rb = this.GetComponent<Rigidbody2D>();
-		playertcache = player.GetComponent<Transform>();
-		inputcache = player.GetComponent<InputManager>();
+		playertcache = GameManager.Instance.gmPlayer.GetComponent<Transform>();
 		cache_tf.LookAt(playertcache);
 	}
 
@@ -45,7 +43,7 @@ public class CameraScript : MonoBehaviour
 				cache_tf.position = temp;
 				once = false;
 			}
-			cache_rb.velocity = inputcache.move * camspeed;
+			cache_rb.velocity = GameManager.Instance.gmInputManager.move * camspeed;
 		}
 	}
 }
