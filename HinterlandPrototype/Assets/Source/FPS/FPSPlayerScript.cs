@@ -9,8 +9,11 @@ public class FPSPlayerScript : Player
 	public float ridingheight;
 
 	private Vector3 move3d;
+	private Vector3 aim3d;
 	private Transform cache_ridetf;
 	private Quaternion targetRot;
+
+	private GameObject currArrow;
 
 	// Use this for initialization
 	void Start ()
@@ -32,9 +35,8 @@ public class FPSPlayerScript : Player
 	public override void Rotate()
 	{
 		float xAxis = Input.GetAxis("Mouse X");
-		//float xPos = Input.mousePosition.x;
+		//float xAxis = Input.mousePosition.x;
 
-		
 		float yRot = xAxis * XSensitivity;
 
 		targetRot *= Quaternion.Euler(0f, yRot, 0f);
@@ -47,6 +49,20 @@ public class FPSPlayerScript : Player
 		{
 			cache_tf.localRotation = targetRot;
 		}
+		
+	}
+
+	public override void Aim(float mx,float my,GameObject arrow)
+	{
+		//aim3d.x = mx;
+		//aim3d.y = my;
+		//aim3d.z = cache_tf
+		//arrow.GetComponent<Transform>().LookAt(aim3d);
+		Debug.Log(mx + " " + my);
+	}
+
+	public override void Fire(float mx, float my)
+	{
 		
 	}
 

@@ -5,6 +5,8 @@ public class InputManager : MonoBehaviour
 {
 	//public RectTransform RotateRT;
 	public Vector2 move;
+	private Vector2 Mouse;
+	private GameObject currArrow;
 	//public Vector3 move3D;
 	public bool Touch;
 	private bool Up;
@@ -123,5 +125,26 @@ public class InputManager : MonoBehaviour
 	public void InputRotate()
 	{
 		GameManager.Instance.gmPlayersScript.Rotate();
+	}
+
+	public void InputShootOn()
+	{
+		GameManager.Instance.gmReticle.SetActive(true);
+		currArrow = GameManager.Instance.gmArrowManager.GetArrow();
+	}
+
+	public void InputShootWhile()
+	{
+		Mouse.x = Input.mousePosition.x;
+		Mouse.y = Input.mousePosition.y;
+
+		GameManager.Instance.gmReticle.transform.position = Mouse;
+
+		GameManager.Instance.gmPlayersScript.Aim(Mouse.x, Mouse.y, currArrow);
+	}
+
+	public void InputShootOff()
+	{
+		GameManager.Instance.gmReticle.SetActive(false);
 	}
 }

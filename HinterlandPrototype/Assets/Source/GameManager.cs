@@ -21,4 +21,6 @@ public class GameManager : MonoBehaviour
 	public GameObject gmPlayerCam;
 	public InputManager gmInputManager;
 	public RideScript gmRideScript;
+	public GameObject gmReticle;
+	public ArrowManager gmArrowManager;
 }
