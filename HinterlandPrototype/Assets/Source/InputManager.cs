@@ -5,7 +5,7 @@ public class InputManager : MonoBehaviour
 {
 	//public RectTransform RotateRT;
 	public Vector2 move;
-	private Vector2 Mouse;
+	private Vector3 Mouse;
 	private GameObject currArrow;
 	//public Vector3 move3D;
 	public bool Touch;
@@ -137,10 +137,11 @@ public class InputManager : MonoBehaviour
 	{
 		Mouse.x = Input.mousePosition.x;
 		Mouse.y = Input.mousePosition.y;
+		Mouse.z = Input.mousePosition.z;
 
 		GameManager.Instance.gmReticle.transform.position = Mouse;
 
-		GameManager.Instance.gmPlayersScript.Aim(Mouse.x, Mouse.y, currArrow);
+		GameManager.Instance.gmPlayersScript.Aim(Mouse.x, Mouse.y,Mouse.z, currArrow);
 	}
 
 	public void InputShootOff()

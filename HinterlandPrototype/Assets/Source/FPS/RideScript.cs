@@ -20,12 +20,13 @@ public class RideScript : MonoBehaviour
 	//private Transform cache_tf;
 
 	private NavMeshAgent cache_nav;
+	private Transform cache_tf;
 
 	// Use this for initialization
 	void Start()
 	{
 		cache_nav = this.GetComponent<NavMeshAgent>();
-		//cache_tf = this.GetComponent<Transform>();
+		cache_tf = this.GetComponent<Transform>();
 		CheckCurrentState();
 	}
 
@@ -62,6 +63,7 @@ public class RideScript : MonoBehaviour
 			{
 					if(currTarget < targets.Length)
 					{
+						// raycast down get perp of hills normal
 						cache_nav.SetDestination(targets[currTarget].position);
 						++currTarget;
 					}
