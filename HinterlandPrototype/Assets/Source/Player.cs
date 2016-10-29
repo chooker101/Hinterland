@@ -11,16 +11,23 @@ public class Player : MonoBehaviour
 
 	}
 
+<<<<<<< HEAD
 	public virtual void StartAim()
+=======
+	public virtual void Aim(float mx,float my, float mz,GameObject arrow)
+>>>>>>> 0263cc300882b7a98ff5e895df69e08ab6dc5d36
 	{
 
 	}
 
+<<<<<<< HEAD
 	public virtual void Aim(float mx,float my,float mz)
 	{
 
 	}
 
+=======
+>>>>>>> 0263cc300882b7a98ff5e895df69e08ab6dc5d36
 	public virtual void Fire(float mx,float my,float mz)
 	{
 

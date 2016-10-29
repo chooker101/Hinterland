@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Rendering;
 using System.Collections;
 
 public class FPSPlayerScript : Player
@@ -14,6 +15,9 @@ public class FPSPlayerScript : Player
 	private Vector3 aim3d;
 	private Transform cache_ridetf;
 	private Quaternion targetRot;
+
+	private Ray mouseRay;
+	private RaycastHit mouseRayHit;
 
 	private GameObject currArrow;
 
@@ -57,6 +61,7 @@ public class FPSPlayerScript : Player
 		
 	}
 
+<<<<<<< HEAD
 	public override void StartAim()
 	{
 		currArrow = cache_ArrowM.GetArrow();
@@ -70,6 +75,22 @@ public class FPSPlayerScript : Player
 		//arrow.GetComponent<Transform>().LookAt(aim3d);
 		Debug.Log(mx + " " + my);
 		currArrow.GetComponent<Transform>().LookAt(aim3d);
+=======
+	public override void Aim(float mx, float my, float mz, GameObject arrow)
+	{
+		aim3d.x = mx;
+		aim3d.y = my;
+		aim3d.z = mz;
+		//arrow.GetComponent<Transform>().LookAt(aim3d);
+		mouseRay = GameManager.Instance.gmPlayerCam.GetComponent<Camera>().ScreenPointToRay(aim3d);
+		if(Physics.Raycast(mouseRay,out mouseRayHit,100.0f,(1 << 9)))//,LayerMask.NameToLayer("Default")
+		{
+			//Debug.DrawRay(GameManager.Instance.gmPlayerCam.transform.position,mouseRayHit.point,Color.blue,3.0f);
+			arrow.transform.LookAt(mouseRayHit.point);
+			//Debug.Log("Hit");
+		}
+		//Debug.Log(mx + " " + my);
+>>>>>>> 0263cc300882b7a98ff5e895df69e08ab6dc5d36
 	}
 
 	public override void Fire(float mx, float my,float mz)
