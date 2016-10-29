@@ -11,12 +11,17 @@ public class Player : MonoBehaviour
 
 	}
 
-	public virtual void Aim(float mx,float my,GameObject arrow)
+	public virtual void StartAim()
 	{
 
 	}
 
-	public virtual void Fire(float mx,float my)
+	public virtual void Aim(float mx,float my,float mz)
+	{
+
+	}
+
+	public virtual void Fire(float mx,float my,float mz)
 	{
 
 	}

@@ -8,6 +8,8 @@ public class FPSPlayerScript : Player
 	public float smoothTime = 5f;
 	public float ridingheight;
 
+	private ArrowManager cache_ArrowM;
+	private Vector2 cameraAspectHalf;
 	private Vector3 move3d;
 	private Vector3 aim3d;
 	private Transform cache_ridetf;
@@ -21,6 +23,9 @@ public class FPSPlayerScript : Player
 		cache_input = GameManager.Instance.gmInputManager;
 		cache_tf = this.GetComponent<Transform>();
 		cache_ridetf = GameManager.Instance.gmRideScript.gameObject.GetComponent<Transform>();
+		cache_ArrowM = this.GetComponent<ArrowManager>();
+		cameraAspectHalf.x = ((float)GameManager.Instance.gmPlayerCam.pixelWidth) * 0.5f;
+		cameraAspectHalf.y = ((float)GameManager.Instance.gmPlayerCam.pixelHeight) * 0.5f;
 		targetRot = cache_tf.localRotation;
 	}
 	
@@ -43,7 +48,7 @@ public class FPSPlayerScript : Player
 
 		if (smooth)
 		{
-			cache_tf.localRotation = Quaternion.Slerp(cache_tf.localRotation, targetRot, smoothTime * Time.deltaTime);
+			cache_tf.localRotation = Quaternion.Slerp(cache_tf.localRotation, targetRot, smoothTime * Time.fixedDeltaTime);
 		}
 		else
 		{
@@ -52,18 +57,24 @@ public class FPSPlayerScript : Player
 		
 	}
 
-	public override void Aim(float mx,float my,GameObject arrow)
+	public override void StartAim()
 	{
-		//aim3d.x = mx;
-		//aim3d.y = my;
-		//aim3d.z = cache_tf
-		//arrow.GetComponent<Transform>().LookAt(aim3d);
-		Debug.Log(mx + " " + my);
+		currArrow = cache_ArrowM.GetArrow();
 	}
 
-	public override void Fire(float mx, float my)
+	public override void Aim(float mx,float my,float mz)
 	{
-		
+		//aim3d = currArrow.transform.forward;
+		//aim3d.x -= (mx - cameraAspectHalf.x);
+		//aim3d.y -= (my - cameraAspectHalf.y);
+		//arrow.GetComponent<Transform>().LookAt(aim3d);
+		Debug.Log(mx + " " + my);
+		currArrow.GetComponent<Transform>().LookAt(aim3d);
+	}
+
+	public override void Fire(float mx, float my,float mz)
+	{
+		cache_ArrowM.IncrArrow();
 	}
 
 	private Vector3 resultant(Vector3 a, Vector3 b)

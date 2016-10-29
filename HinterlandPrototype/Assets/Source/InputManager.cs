@@ -6,7 +6,6 @@ public class InputManager : MonoBehaviour
 	//public RectTransform RotateRT;
 	public Vector2 move;
 	private Vector2 Mouse;
-	private GameObject currArrow;
 	//public Vector3 move3D;
 	public bool Touch;
 	private bool Up;
@@ -54,6 +53,8 @@ public class InputManager : MonoBehaviour
 		}
 		else
 		{*/
+		if (GameManager.Instance.gmPlayer.GetComponent<Rigidbody2D>() != null)
+		{
 			move = Vector2.zero;
 			if (!Touch)
 			{
@@ -79,6 +80,7 @@ public class InputManager : MonoBehaviour
 					move.x -= 1;
 				}
 			}
+		}
 		//}
 	}
 
@@ -130,7 +132,7 @@ public class InputManager : MonoBehaviour
 	public void InputShootOn()
 	{
 		GameManager.Instance.gmReticle.SetActive(true);
-		currArrow = GameManager.Instance.gmArrowManager.GetArrow();
+		GameManager.Instance.gmPlayersScript.StartAim();
 	}
 
 	public void InputShootWhile()
@@ -140,11 +142,12 @@ public class InputManager : MonoBehaviour
 
 		GameManager.Instance.gmReticle.transform.position = Mouse;
 
-		GameManager.Instance.gmPlayersScript.Aim(Mouse.x, Mouse.y, currArrow);
+		GameManager.Instance.gmPlayersScript.Aim(Mouse.x, Mouse.y,Input.mousePosition.z);
 	}
 
 	public void InputShootOff()
 	{
 		GameManager.Instance.gmReticle.SetActive(false);
+		GameManager.Instance.gmPlayersScript.Fire(Mouse.x, Mouse.y, Input.mousePosition.z);
 	}
 }

@@ -15,6 +15,13 @@ public class ArrowManager : MonoBehaviour
 
 	public void IncrArrow()
 	{
-		++currArrow;
+		if (currArrow < arrows.Length)
+		{
+			++currArrow;
+		}
+		else
+		{
+			currArrow = 0;
+		}
 	}
 }
