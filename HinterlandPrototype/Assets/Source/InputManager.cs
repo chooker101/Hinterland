@@ -5,12 +5,8 @@ public class InputManager : MonoBehaviour
 {
 	//public RectTransform RotateRT;
 	public Vector2 move;
-<<<<<<< HEAD
-	private Vector2 Mouse;
-=======
 	private Vector3 Mouse;
 	private GameObject currArrow;
->>>>>>> 0263cc300882b7a98ff5e895df69e08ab6dc5d36
 	//public Vector3 move3D;
 	public bool Touch;
 	private bool Up;
@@ -148,11 +144,8 @@ public class InputManager : MonoBehaviour
 
 		GameManager.Instance.gmReticle.transform.position = Mouse;
 
-<<<<<<< HEAD
-		GameManager.Instance.gmPlayersScript.Aim(Mouse.x, Mouse.y,Input.mousePosition.z);
-=======
+
 		GameManager.Instance.gmPlayersScript.Aim(Mouse.x, Mouse.y,Mouse.z, currArrow);
->>>>>>> 0263cc300882b7a98ff5e895df69e08ab6dc5d36
 	}
 
 	public void InputShootOff()

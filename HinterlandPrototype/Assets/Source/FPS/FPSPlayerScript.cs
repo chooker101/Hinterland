@@ -61,21 +61,12 @@ public class FPSPlayerScript : Player
 		
 	}
 
-<<<<<<< HEAD
+
 	public override void StartAim()
 	{
 		currArrow = cache_ArrowM.GetArrow();
 	}
 
-	public override void Aim(float mx,float my,float mz)
-	{
-		//aim3d = currArrow.transform.forward;
-		//aim3d.x -= (mx - cameraAspectHalf.x);
-		//aim3d.y -= (my - cameraAspectHalf.y);
-		//arrow.GetComponent<Transform>().LookAt(aim3d);
-		Debug.Log(mx + " " + my);
-		currArrow.GetComponent<Transform>().LookAt(aim3d);
-=======
 	public override void Aim(float mx, float my, float mz, GameObject arrow)
 	{
 		aim3d.x = mx;
@@ -90,7 +81,6 @@ public class FPSPlayerScript : Player
 			//Debug.Log("Hit");
 		}
 		//Debug.Log(mx + " " + my);
->>>>>>> 0263cc300882b7a98ff5e895df69e08ab6dc5d36
 	}
 
 	public override void Fire(float mx, float my,float mz)
