@@ -76,7 +76,7 @@ public class FPSPlayerScript : Player
 		mouseRay = GameManager.Instance.gmPlayerCam.GetComponent<Camera>().ScreenPointToRay(aim3d);
 		if(Physics.Raycast(mouseRay,out mouseRayHit,100.0f,(1 << 9)))//,LayerMask.NameToLayer("Default")
 		{
-			//Debug.DrawRay(GameManager.Instance.gmPlayerCam.transform.position,mouseRayHit.point,Color.blue,3.0f);
+			Debug.DrawRay(GameManager.Instance.gmPlayerCam.transform.position,mouseRayHit.point,Color.blue,3.0f);
 			arrow.transform.LookAt(mouseRayHit.point);
 			//Debug.Log("Hit");
 		}
